@@ -42,6 +42,8 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
         Log.d(TAG,"onInitializationSuccess: player is ${player?.javaClass}")
         Toast.makeText(this, "Initialized YouTube Player successfully", Toast.LENGTH_LONG).show()
 
+        player?.setPlayerStateChangeListener(playerStateChangeListener)
+        player?.setPlaybackEventListener(playbackEventListener)
         if(wasRestored) {
             player?.cueVideo(YOUTUBE_VIDEO_ID)
         }
@@ -74,7 +76,7 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
         }
 
         override fun onStopped() {
-            TODO("Not yet implemented")
+            Toast.makeText(this@YoutubeActivity, "Video has stopped", Toast.LENGTH_LONG).show()
         }
 
         override fun onPaused() {
@@ -96,15 +98,14 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
         }
 
         override fun onLoaded(p0: String?) {
-            TODO("Not yet implemented")
+            Toast.makeText(this@YoutubeActivity, "Video has loaded", Toast.LENGTH_LONG).show()
         }
 
         override fun onVideoEnded() {
-            TODO("Not yet implemented")
+            Toast.makeText(this@YoutubeActivity, "Video has ended", Toast.LENGTH_LONG).show()
         }
 
         override fun onError(p0: YouTubePlayer.ErrorReason?) {
-            TODO("Not yet implemented")
         }
 
     }
