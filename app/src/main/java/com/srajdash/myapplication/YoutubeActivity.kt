@@ -59,4 +59,53 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
         }
     }
+
+    private val playbackEventListener = object : YouTubePlayer.PlaybackEventListener{
+        override fun onSeekTo(p0: Int) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onBuffering(p0: Boolean) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onPlaying() {
+            Toast.makeText(this@YoutubeActivity, "Good, video is playing ok", Toast.LENGTH_LONG).show()
+        }
+
+        override fun onStopped() {
+            TODO("Not yet implemented")
+        }
+
+        override fun onPaused() {
+            Toast.makeText(this@YoutubeActivity, "Video has paused", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private val playerStateChangeListener = object: YouTubePlayer.PlayerStateChangeListener {
+        override fun onAdStarted() {
+            Toast.makeText(this@YoutubeActivity, "Ad started", Toast.LENGTH_LONG).show()
+        }
+
+        override fun onLoading() {
+            TODO("Not yet implemented")
+        }
+
+        override fun onVideoStarted() {
+            Toast.makeText(this@YoutubeActivity, "Video has started", Toast.LENGTH_LONG).show()
+        }
+
+        override fun onLoaded(p0: String?) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onVideoEnded() {
+            TODO("Not yet implemented")
+        }
+
+        override fun onError(p0: YouTubePlayer.ErrorReason?) {
+            TODO("Not yet implemented")
+        }
+
+    }
 }
