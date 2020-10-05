@@ -1,6 +1,7 @@
 package com.srajdash.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.google.android.youtube.player.YouTubePlayerView
 
 const val YOUTUBE_VIDEO_ID = "I2dyKtSbsbM"
 const val YOUTUBE_VIDEO_PLAYLIST = "PL1Zz3HA8wnG3Vv1GLLU0ozsAMm4i0NAIj"
+const val TAG = "YA"
 
 class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
@@ -32,11 +34,17 @@ class YoutubeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListen
     }
 
     override fun onInitializationSuccess(
-        p0: YouTubePlayer.Provider?,
-        p1: YouTubePlayer?,
-        p2: Boolean
+        provider: YouTubePlayer.Provider?,
+        player: YouTubePlayer?,
+        wasRestored: Boolean
     ) {
-        TODO("Not yet implemented")
+        Log.d(TAG,"onInitializationSuccess: provider is ${provider?.javaClass}")
+        Log.d(TAG,"onInitializationSuccess: player is ${player?.javaClass}")
+        Toast.makeText(this, "Initialized YouTube Player successfully", Toast.LENGTH_LONG).show()
+
+        if(wasRestored) {
+            player?.cueVideo(YOUTUBE_VIDEO_ID)
+        }
     }
 
     override fun onInitializationFailure(
